@@ -1,0 +1,45 @@
+body {
+    font-family: "HelveticaNeue-UltraLight", "Helvetica Neue UltraLight", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    font-weight: 100;
+    font-size: 6em;
+}
+
+.parent {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+
+}
+
+.middle {
+    text-align: center;
+    position: relative;
+    top: 40%;
+    transform: translateY(-50%);
+}
+
+.set_time_form {
+    top: 35%;
+}
+
+.submit {
+    border-radius: 1px;
+    background-color: white;
+    border-color: #000000;
+    border: solid;
+    border-width: 1px;
+    transform: translateY(5%);
+    font-size: 20px;
+    height: 30px;
+}
+
+.set_time {
+    border-radius: 1px;
+    background-color: white;
+    border-color: #000000;
+    border: solid;
+    border-width: 1px;
+    transform: translateY(1%);
+    font-size: 20px;
+    height: 28px;
+}

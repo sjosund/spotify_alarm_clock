@@ -36,6 +36,15 @@ class Alarm(Thread):
                     self._alarm_on = False
             sleep(1)
 
+    def time(self):
+        return '{}:{}'.format(
+            str(self.alarm_t.hour).zfill(2),
+            str(self.alarm_t.minute).zfill(2)
+        )
+
+    def status(self):
+        return "ON" if self.active else "OFF"
+
 
 playlists = {
     'morning': 'spotify:user:1146628823:playlist:14FRsyt8MBES8xcNgSOdhy'

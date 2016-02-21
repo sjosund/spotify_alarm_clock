@@ -1,7 +1,7 @@
 from argparse import ArgumentParser
 from datetime import datetime
 
-from flask import Flask, request
+from flask import Flask, request, render_template
 
 from alarm import Alarm
 
@@ -10,19 +10,20 @@ app = Flask(__name__)
 alarm = Alarm(alarm_t=datetime.now(), active=False)
 
 
-@app.route('/set_alarm')
+@app.route('/')
+def index():
+    return render_template('index.html', status=alarm.status(), alarm_t=alarm.time())
+
+
+@app.route('/set_alarm', methods=['POST'])
 def set_alarm():
-    hour = int(request.args['hour'])
-    minute = int(request.args['minute'])
+    hour, minute = [int(n) for n in request.form['alarm_time'].split(':')]
     alarm.set_alarm(
         datetime(
             2000, 1, 1, hour, minute
         )
     )
-    return 'Alarm set to {}:{}'.format(
-        str(alarm.alarm_t.hour).zfill(2),
-        str(alarm.alarm_t.minute).zfill(2)
-    )
+    return render_template('index.html', status=alarm.status(), alarm_t=alarm.time())
 
 
 @app.route('/deactivate')
@@ -39,11 +40,7 @@ def activate():
 
 @app.route('/status')
 def status():
-    return 'Active: {}, Time: {}:{}'.format(
-        alarm.active,
-        str(alarm.alarm_t.hour).zfill(2),
-        str(alarm.alarm_t.minute).zfill(2)
-    )
+    return 'Status: {}, Time: {}'.format(alarm.status(), alarm.time())
 
 
 if __name__ == '__main__':
@@ -53,4 +50,4 @@ if __name__ == '__main__':
     kwargs = vars(parser.parse_args())
 
     alarm.start()
-    app.run(**kwargs)
+    app.run(debug=True, **kwargs)

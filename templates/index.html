@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<head>
+    <head>
+        <link rel="stylesheet" type="text/css" href="../static/stylesheet.css">
+    </head>
+</head>
+<html>
+    <body>
+        <div class="parent">
+            <div class="middle">
+                Alarm is {{ status }}
+            </div>
+            <div class="middle">
+                {{ alarm_t }}
+            </div>
+            <form action="http://127.0.0.1:5000/set_alarm" class="middle set_time_form" method="post">
+                <input type="time" name="alarm_time" class="middle set_time">
+                <input type="submit" class="middle submit">
+            </form>
+        </div>
+    </body>
+</html>
